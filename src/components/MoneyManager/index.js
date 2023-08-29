@@ -1,8 +1,12 @@
 import {Component} from 'react'
 // import {v4} from 'uuid'
 
+import {v4 as uuidv4} from 'uuid'
+
 // import TransactionItem from '../TransactionItem'
 import MoneyDetails from '../MoneyDetails'
+
+import TransactionItem from '../TransactionItem'
 
 import './index.css'
 
@@ -52,7 +56,7 @@ class MoneyManager extends Component {
 
     const {amountInput, optionEvent, title} = this.state
 
-    const newObject = {title, amountInput, optionEvent}
+    const newObject = {id: uuidv4(), title, amountInput, optionEvent}
 
     this.setState(prev => ({
       transactionList: [...prev.transactionList, newObject],
@@ -61,6 +65,10 @@ class MoneyManager extends Component {
       title: '',
     }))
   }
+
+  //   removeList = id => {
+  //     console.log(id)
+  //   }
 
   getIncomeValue = () => {
     const {transactionList} = this.state
@@ -101,6 +109,8 @@ class MoneyManager extends Component {
     const expenseValue = this.getExpense()
 
     const totalValue = incomeValue - expenseValue
+
+    // const removeEvent = this.removeList()
 
     console.log(transactionList)
 
@@ -167,13 +177,24 @@ class MoneyManager extends Component {
             <div className="history-transactions">
               <h1 className="transaction-header">History</h1>
               <div className="transactions-table-container">
-                <ul className="transactions-table">
-                  <li className="table-header">
+                <div className="transactions-table">
+                  <div className="table-header">
                     <p className="table-header-cell">Title</p>
                     <p className="table-header-cell">Amount</p>
                     <p className="table-header-cell">Type</p>
-                  </li>
-                </ul>
+                  </div>
+                  <div>
+                    <ul className="history-main">
+                      {transactionList.map(each => (
+                        <TransactionItem
+                          //   removeList={removeList}
+                          key={each.id}
+                          each={each}
+                        />
+                      ))}
+                    </ul>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
