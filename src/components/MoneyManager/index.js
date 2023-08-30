@@ -43,6 +43,18 @@ class MoneyManager extends Component {
     this.setState({optionEvent: event.target.value})
   }
 
+  removeList = (id, optionEvent) => {
+    console.log(optionEvent)
+    const {transactionList} = this.state
+    const updatedTransactionList = transactionList.filter(
+      transaction =>
+        transaction.id !== id && transaction.optionEvent !== optionEvent,
+    )
+    this.setState({
+      transactionList: updatedTransactionList,
+    })
+  }
+
   handleTitle = event => {
     const input = event.target.value
 
@@ -65,10 +77,6 @@ class MoneyManager extends Component {
       title: '',
     }))
   }
-
-  //   removeList = id => {
-  //     console.log(id)
-  //   }
 
   getIncomeValue = () => {
     const {transactionList} = this.state
@@ -110,9 +118,7 @@ class MoneyManager extends Component {
 
     const totalValue = incomeValue - expenseValue
 
-    // const removeEvent = this.removeList()
-
-    console.log(transactionList)
+    // const removeEvent = this.removeList
 
     return (
       <div className="app-container">
@@ -187,7 +193,7 @@ class MoneyManager extends Component {
                     <ul className="history-main">
                       {transactionList.map(each => (
                         <TransactionItem
-                          //   removeList={removeList}
+                          removeList={this.removeList}
                           key={each.id}
                           each={each}
                         />

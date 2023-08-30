@@ -7,12 +7,13 @@ import './index.css'
 // import React from 'react'
 
 export default function TransactionItem(props) {
-  const {each} = props
+  const {each, removeList} = props
   const {id, amountInput, title, optionEvent} = each
-  console.log(each)
+
+  //   console.log(each)
 
   const handlerDelete = () => {
-    // removeList(id)
+    removeList(id, optionEvent)
   }
 
   return (
@@ -30,13 +31,3 @@ export default function TransactionItem(props) {
     </li>
   )
 }
-
-// export default class TransactionItem extends Component {
-
-//   render() {
-
-//     return (
-
-//     )
-//   }
-// }
