@@ -31,7 +31,7 @@ const MoneyDetails = props => {
           </p>
         </div>
       </div>
-      <div data-testid="delete" className="expenses-container">
+      <div className="expenses-container">
         <img
           src="https://assets.ccbp.in/frontend/react-js/money-manager/expenses-image.png"
           alt="expenses"

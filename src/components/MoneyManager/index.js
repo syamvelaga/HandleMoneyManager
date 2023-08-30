@@ -44,11 +44,11 @@ class MoneyManager extends Component {
   }
 
   removeList = (id, optionEvent) => {
-    console.log(optionEvent)
+    console.log(id, optionEvent)
+
     const {transactionList} = this.state
     const updatedTransactionList = transactionList.filter(
-      transaction =>
-        transaction.id !== id && transaction.optionEvent !== optionEvent,
+      transaction => transaction.id !== id,
     )
     this.setState({
       transactionList: updatedTransactionList,
@@ -118,6 +118,8 @@ class MoneyManager extends Component {
 
     const totalValue = incomeValue - expenseValue
 
+    console.log(transactionList)
+
     // const removeEvent = this.removeList
 
     return (
@@ -169,6 +171,7 @@ class MoneyManager extends Component {
                 onChange={this.HandleOption}
                 id="select"
                 className="input"
+                value={optionEvent}
               >
                 {transactionTypeOptions.map(eachOption => (
                   <option key={eachOption.optionId} value={eachOption.optionId}>

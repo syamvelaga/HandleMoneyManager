@@ -20,8 +20,15 @@ export default function TransactionItem(props) {
     <li className="historyContainer">
       <p className="transaction">{title}</p>
       <p className="transaction">Rs {amountInput}</p>
-      <p className="transaction">{optionEvent}</p>
-      <button onClick={handlerDelete} type="button" className="delete-div">
+      <p className="transaction">
+        {optionEvent === 'INCOME' ? 'Income' : 'Expenses'}
+      </p>
+      <button
+        data-testid="delete"
+        onClick={handlerDelete}
+        type="button"
+        className="delete-div"
+      >
         <img
           src="https://assets.ccbp.in/frontend/react-js/money-manager/delete.png"
           alt="delete"
